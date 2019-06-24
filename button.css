@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css?family=Exo');
+
+//Variables
+
+$bPrimary: #7659ff;
+$bWarning: #ffa100;
+$bSuccess: #00d977;
+$bInfo: #0088ff;
+$bDanger: #ff386a;
+
+//Functions
+
+@function shade($color, $percent){
+  @return mix(black, $color, $percent);
+}
+
+@function tint($color, $percent){
+  @return mix(white, $color, $percent);
+}
+
+//Mixins
+
+@mixin cosmosButtonBorder($color){
+  border-bottom: 3px solid shade($color, 14%);
+  box-shadow: 0 4px 10px rgba(6,7, 64, 0.5);
+  text-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+
+
+
+
+@mixin cosmosButtonBg($color){
+  background: $color;
+  background-image: linear-gradient(to right,adjust-hue($color, 20deg),$color);
+}
+
+@mixin cosmosButtonHover($color){
+  background-image: linear-gradient(to right,adjust-hue($color, 20deg),tint($color, 30%));
+}
+
+*{
+  font-family: 'Exo', sans-serif !important;
+  box-sizing: border-box;
+}
+
+*:focus{
+  outline: none;
+}
+
+body{
+  background: #342e73;
+  padding: 2rem;
+ 
+}
+
+div{
+  margin: 2rem;
+}
+
+button{
+  margin: 0.5rem;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  color: white;
+  font-weight: 900;
+  border: none;
+  transition: 0.5s;
+  background: none;
+  
+  &.bg-primary{
+    @include cosmosButtonBorder($bPrimary);
+  }
+  
+  &.bg-warning{
+    @include cosmosButtonBorder($bWarning);
+  }
+  
+  &.bg-success{
+    @include cosmosButtonBorder($bSuccess);
+  }
+  
+  &.bg-info{
+    @include cosmosButtonBorder($bInfo);
+  }
+  
+  &.bg-danger{
+    @include cosmosButtonBorder($bDanger);
+  }
+  
+  &.bg-primary:hover{
+    @include cosmosButtonHover($bPrimary);
+  }
+  
+  &.bg-warning:hover{
+    @include cosmosButtonHover($bWarning);
+  }
+  
+  &.bg-success:hover{
+    @include cosmosButtonHover($bSuccess);
+  }
+  
+  &.bg-info:hover{
+    @include cosmosButtonHover($bInfo);
+  }
+  
+  &.bg-danger:hover{
+    @include cosmosButtonHover($bDanger);
+  }
+  
+  &:active{
+    border-bottom: none;
+    box-shadow: none;
+  }
+}
+
+.bg-primary{
+  @include cosmosButtonBg($bPrimary);
+}
+
+.bg-warning{
+  @include cosmosButtonBg($bWarning);
+}
+
+.bg-success{
+  @include cosmosButtonBg($bSuccess);
+}
+
+.bg-info{
+  @include cosmosButtonBg($bInfo);
+}
+
+.bg-danger{
+  @include cosmosButtonBg($bDanger);
+}
