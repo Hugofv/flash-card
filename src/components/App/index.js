@@ -1,14 +1,18 @@
-import Home from '../Home';
-import React from 'react';
+// import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import FlashCard from "../FlashCard";
+import Home from "../Home";
+import React from "react";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-
-      <Home/>
-    </div>
+    <FlashCard />
+    // <BrowserRouter>
+    //   <Switch>
+    //     <Route path="/" exact={true} component={Home} />
+    //     <Route path="/flash-card" component={FlashCard} />
+    //   </Switch>
+    // </BrowserRouter>
   );
 }
 
