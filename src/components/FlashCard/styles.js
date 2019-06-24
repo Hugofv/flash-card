@@ -5,57 +5,61 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
-  display: inline-block;
-  margin: 10px;
-  position: relative;
-  background: #fff;
-  border-radius: 3px;
-  border: 1px #ccc solid;
-  width: 80px;
-  height: 120px;
-  cursor: pointer;
-  color: ${props => (props.heart && "#900") || (props.diomont && "#333")};
-
-  :before,
-  :after {
-    display: block;
-    padding: 5px;
-    position: absolute;
-  }
-
-  :before {
-    content: ${props =>
-      (props.open && (props.heart && "'♥'")) || (props.diomont && "'♦'")};
-    top: 0px;
-    left: 0px;
-  }
-
-  :after {
-    content: ${props =>
-      (props.open && (props.heart && "'♥'")) || (props.diomont && "'♦'")};
-    bottom: 0px;
-    right: 0px;
-    transform: rotate(-180deg);
-  }
-
-  p {
-    margin: 0px;
-    padding: 0px;
-    color: ${props =>
-      (props.open && (props.heart && "#ad3333")) || (props.diomont && "#333")};
-    font: bold 40px "Plaster", sans-serif;
-    text-align: center;
-    line-height: 120px;
-  }
-
-  div {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-      width: 80px;
-    }
-  }
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transition: -webkit-transform 1s;
+  -moz-transition: -moz-transform 1s;
+  -o-transition: -o-transform 1s;
+  transition: transform 1s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin: 50% 50%;
+  transform: ${props => !props.open && 'rotateY(180deg)'};
+  border: 1px solid #ccc;
 `;
+
+export const BoxCard = styled.div`
+  width: 200px;
+  height: 260px;
+  position: relative;
+  -webkit-perspective: 800px;
+  -moz-perspective: 800px;
+  -o-perspective: 800px;
+  perspective: 800px;
+  margin: 0.5em;
+`
+
+export const FrontCard = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: #ffffff;
+
+  span {
+    font-size: 8.5em
+  }
+`
+
+export const BackCard = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  height: 100%;
+  -webkit-transform: rotateY( 180deg );
+  -moz-transform: rotateY( 180deg );
+  -o-transform: rotateY( 180deg );
+  transform: rotateY( 180deg );
+`
