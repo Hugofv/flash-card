@@ -1,14 +1,15 @@
 import React from 'react';
-import { StartButton } from './styles';
+import { StartButton, Container, Input } from './styles';
 
 const Home = () => {
 
   return (
-    <div>
+    <Container>
+      <Input />
       <StartButton>
         Start
       </StartButton>
-    </div>
+    </Container>
   );
 }
 
