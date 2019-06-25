@@ -2,81 +2,60 @@ import { Card, Container, FrontCard, BackCard, BoxCard } from "./styles";
 
 import IconCard from "../../assets/img/icon-card.png";
 import React, { useState, useEffect } from "react";
+import { connect } from 'react-redux';
+import * as card_actions from '../../actions/card';
+import { bindActionCreators } from 'redux'
 
-var cards = [
-  {
-    value: 7,
-    icon: 'heart'
-  },
-  {
-    value: 2,
-    icon: 'heart'
-  },
-  {
-    value: 45,
-    icon: 'heart'
-  },
-  {
-    value: 8,
-    icon: 'heart'
-  },
-  {
-    value: 32,
-    icon: 'heart'
-  },
-  {
-    value: 9,
-    icon: 'heart'
-  },
-  {
-    value: 4,
-    icon: 'heart'
-  },
-  {
-    value: 5,
-    icon: 'heart'
-  },
-  {
-    value: 3,
-    icon: 'heart'
-  },
-  {
-    value: 0,
-    icon: 'heart'
-  },
-]
-
-const FlashCard = () => {
+const FlashCard = ({ card, update_card, start_game }) => {
 
   const [indexCards, setIndexCards] = useState({ indexBack: null, indexCurrent: null });
+  const { cards } = card;
 
   useEffect(() => {
-    if (!(indexCards.indexBack && indexCards.indexCurrent)) {
+    start_game()
+  }, [])
+
+  useEffect(() => {
+    if ((indexCards.indexBack == null || indexCards.indexCurrent == null)) {
       return
     }
-    if (cards[indexCards.indexBack].value == cards[indexCards.indexCurrent].value) {
-      cards[indexCards.indexBack].checked = true;
-      cards[indexCards.indexCurrent].checked = true;
+    let newCards = cards;
+    if (newCards[indexCards.indexBack].value == newCards[indexCards.indexCurrent].value) {
+      setIndexCards({ indexBack: null, indexCurrent: null })
+      newCards[indexCards.indexBack].checked = true;
+      newCards[indexCards.indexCurrent].checked = true;
     } else {
       setIndexCards({ indexBack: null, indexCurrent: null })
       setTimeout(() => {
-        cards[indexCards.indexBack].open = false;
-        cards[indexCards.indexCurrent].open = false;
-      }, 500)
+        newCards[indexCards.indexBack].open = false;
+        newCards[indexCards.indexCurrent].open = false;
+
+        update_card(newCards);
+      }, 1000)
     }
-  });
+  }, [indexCards.indexBack, indexCards.indexCurrent]);
 
+  console.log(cards)
   const handleCard = index => {
-    cards[index].open = !cards[index].open;
+    let newCards = cards;
+    if (newCards[index].checked) {
+      return
+    }
 
-    if (indexCards.indexBack) {
+    newCards[index].open = !newCards[index].open;
+
+    if (indexCards.indexBack && index === indexCards.indexBack) {
+      setIndexCards({ ...indexCards, indexBack: null })
+      return
+    }
+
+    if (indexCards.indexBack != null) {
       setIndexCards({ ...indexCards, indexCurrent: index })
+
     } else {
       setIndexCards({ ...indexCards, indexBack: index })
     }
   }
-
-  console.log(cards);
 
   return (
     <Container>
@@ -98,4 +77,12 @@ const FlashCard = () => {
   );
 };
 
-export default FlashCard;
+function mapStateToProps(state) {
+  return { card: state.card }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(card_actions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FlashCard);
