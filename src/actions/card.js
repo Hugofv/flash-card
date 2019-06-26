@@ -6,7 +6,7 @@ export const update_card = cards => dispatch => {
 
 export const start_game = () => dispatch => {
   let cards = [];
-  for (let index = 0; index < 5; index++) {
+  for (let index = 0; index < 10; index++) {
     cards.push({ value: getRandomInt(0, 99) })
   }
 

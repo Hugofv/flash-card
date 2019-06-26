@@ -43,15 +43,15 @@ background-color: ${props => props.color};
 `
 
 export const Name = styled.div`
-position: relative;
-margin-left: .5rem;
-padding: 0 .5rem;
-font-family: sans-serif;
-text-transform: uppercase;
-width: 80%;
-height: inherit;
-background-color: rgba(0, 0, 0, 0.5);
-font-size: 16px;
+  position: relative;
+  margin-left: .5rem;
+  padding: 0 .5rem;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  width: 80%;
+  height: inherit;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: .8rem;
 
 ::before {
   content: '';

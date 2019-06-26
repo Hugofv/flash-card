@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Game from './components/Game';
 import Ranking from './components/Ranking';
 import { Container } from './styles';
@@ -8,14 +8,16 @@ import { bindActionCreators } from 'redux'
 
 
 const FlashCard = ({ fetch_player, player }) => {
+  const [points, setPoints] = useState(0.00);
+
   useEffect(() => {
     fetch_player()
   }, [fetch_player])
 
   return (
     <Container>
-      <Game />
-      <Ranking players={player.players} />
+      <Game {...{ setPoints }} {...{ points }} />
+      <Ranking players={player.players} {...{ points }} />
     </Container>
   )
 }

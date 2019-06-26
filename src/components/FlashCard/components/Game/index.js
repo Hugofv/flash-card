@@ -1,7 +1,7 @@
 import * as card_actions from '../../../../actions/card';
 import * as player_actions from '../../../../actions/player';
 
-import { BackCard, BoxCard, Card, Container, ContainerCards, FrontCard, Points } from "./styles";
+import { BackCard, BoxCard, Card, Container, ContainerCards, FrontCard } from "./styles";
 import React, { useEffect, useState } from "react";
 
 import IconCard from "../../../../assets/img/icon-card.png";
@@ -11,11 +11,11 @@ import { connect } from 'react-redux';
 import getPlayer from "../../../../utils/getPlayer";
 import history from "../../../../utils/history";
 
-const Game = ({ card, update_card, start_game, update_player }) => {
+const Game = ({ card, update_card, start_game, update_player, setPoints, points }) => {
 
   const [indexCards, setIndexCards] = useState({ indexBack: null, indexCurrent: null });
   const [start, setStart] = useState(false);
-  const [points, setPoints] = useState(0.00);
+
   const [countChecked, setCountChecked] = useState(0);
   const { cards } = card;
 
@@ -102,7 +102,6 @@ const Game = ({ card, update_card, start_game, update_player }) => {
 
   return (
     <Container>
-      <Points id="points">{points}</Points>
       <ContainerCards>
         {
           cards.map((card, index) => <BoxCard key={index} onClick={() => handleCard(index)}>
@@ -112,7 +111,7 @@ const Game = ({ card, update_card, start_game, update_player }) => {
               </FrontCard>
 
               <BackCard>
-                <img style={{width: '100%'}} src={IconCard} />
+                <img style={{ width: '100%' }} src={IconCard} />
               </BackCard>
             </Card>
           </BoxCard>)

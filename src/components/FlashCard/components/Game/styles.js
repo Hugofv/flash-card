@@ -5,13 +5,13 @@ export const Container = styled.div`
   justify-content: center;
   flex-flow: column;
   width: 65%;
+  margin: 1em;
 `;
 
 export const ContainerCards = styled.div`
   display: flex;
   flex-wrap: wrap;
   overflow: auto;
-  max-height: 40em;
   scrollbar-width: none;
 `;
 
@@ -35,8 +35,33 @@ export const Card = styled.div`
 `;
 
 export const BoxCard = styled.div`
-  width: 9em;
-  height: 13em;
+  width: calc(${(window.innerWidth * 0.50) / 5}px - 0.5em);
+  height: 4rem;
+
+  @media (min-width: 728px) 
+  {
+    width: calc(${(window.innerWidth * 0.50) / 5}px - 0.6em);;
+    height: 5em;
+  }
+
+  @media (min-width: 1024px) 
+  {
+    width: calc(${(window.innerWidth * 0.50) / 5}px - 0.6em);;
+    height: 7em;
+  }
+
+  @media (min-width: 1100px) 
+  {
+    width: calc(${(window.innerWidth * 0.50) / 5}px - 0.6em);;
+    height: 12em;
+  }
+
+  @media (min-width: 1500px) 
+  {
+    width: calc(${(window.innerWidth * 0.50) / 5}px - 0.6em);;
+    height: 16em;
+  }
+
   position: relative;
   -webkit-perspective: 800px;
   -moz-perspective: 800px;
@@ -61,7 +86,11 @@ export const FrontCard = styled.div`
   background: #ffffff;
 
   span {
-    font-size: 8em
+    font-size: 3rem;
+
+    @media (min-width: 900px) {
+      font-size: 4rem;
+    }
   }
 `
 
@@ -80,15 +109,4 @@ export const BackCard = styled.div`
   -moz-backface-visibility: hidden;
   -o-backface-visibility: hidden;
   backface-visibility: hidden;
-`
-
-export const Points = styled.div`
-  margin-left: .4em;
-  font-size: 25px;
-  text-align: center;
-  width: 8%;
-  color: #000;
-  background: #fff;
-  font-weight: bold;
-  box-shadow: 0px 14px 45px -2px rgba(0,0,0,0.75);
 `
