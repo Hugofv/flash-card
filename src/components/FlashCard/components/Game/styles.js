@@ -12,6 +12,7 @@ export const ContainerCards = styled.div`
   flex-wrap: wrap;
   overflow: auto;
   max-height: 40em;
+  scrollbar-width: none;
 `;
 
 export const Card = styled.div`
@@ -22,7 +23,6 @@ export const Card = styled.div`
   -moz-transition: -moz-transform 1s;
   -o-transition: -o-transform 1s;
   transition: transform 1s;
-  -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -75,6 +75,11 @@ export const BackCard = styled.div`
   -moz-transform: rotateY( 180deg );
   -o-transform: rotateY( 180deg );
   transform: rotateY( 180deg );
+
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
 `
 
 export const Points = styled.div`

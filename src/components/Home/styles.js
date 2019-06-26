@@ -10,7 +10,7 @@ export const Container = styled.div`
 
 export const StartButton = styled.button`
   margin: 0.5rem;
-  margin-top: 2em;
+  margin-top: 3em;
   text-transform: uppercase;
   padding: 1rem 2.5rem;
   border-radius: 12px;
@@ -48,6 +48,7 @@ export const Input = styled.input`
   border-radius: 10px;
   size: 1em;
   margin: 1em;
+  margin-bottom: .1em;
   padding: 1em;
   outline: none;
 `
@@ -62,3 +63,10 @@ export const Label = styled.label`
   font-weight: bold;
   font-size: 20px;
 `
+
+export const Error = styled.label`
+  color: #bc1e1e;
+  margin-left: 1em;
+  font-weight: bold;
+  font-size: 16px;
+` 

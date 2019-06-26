@@ -1,19 +1,36 @@
-import React, { useState } from 'react';
-import { StartButton, Container, Input, BoxInput, Label } from './styles';
-import { connect } from 'react-redux';
 import * as player_actions from '../../actions/player';
+
+import { BoxInput, Container, Error, Input, Label, StartButton } from './styles';
+import React, { useState } from 'react';
+
 import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 
 const Home = ({ add_player }) => {
   const [player, setPlayer] = useState({ nickname: '' })
+  const [error, setError] = useState({ })
+
+  const addPlayer = () => {
+    if (player.nickname) {
+      add_player(player)
+    } else {
+      setError({nickname: 'Campo Obrigatório'})
+    }
+  }
 
   return (
     <Container>
       <BoxInput>
         <Label>Nickname</Label>
-        <Input placeholder='Informe um nickname' onChange={({ target: { value } }) => setPlayer({ ...player, nickname: value })} />
+        <Input placeholder='Informe um nickname' onChange={({ target: { value } }) => {
+          setError({})
+          setPlayer({ ...player, nickname: value })
+        }} />
+        {
+          error.nickname && <Error>{error.nickname}</Error>
+        }
       </BoxInput>
-      <StartButton onClick={() => add_player(player)}>
+      <StartButton onClick={() => addPlayer(player)}>
         Start
       </StartButton>
     </Container>
