@@ -10,6 +10,7 @@ export const Container = styled.div`
 
 export const StartButton = styled.button`
   margin: 0.5rem;
+  margin-top: 2em;
   text-transform: uppercase;
   padding: 1rem 2.5rem;
   border-radius: 12px;
@@ -49,4 +50,15 @@ export const Input = styled.input`
   margin: 1em;
   padding: 1em;
   outline: none;
+`
+export const BoxInput = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const Label = styled.label`
+  color: #fff;
+  margin-left: 1em;
+  font-weight: bold;
+  font-size: 20px;
 `

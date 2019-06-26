@@ -2,16 +2,15 @@ import React from 'react';
 import { Container } from './styles';
 import RowRank from './components/RowRank';
 
-const Ranking = props => {
-
+const Ranking = ({ players }) => {
   return (
     <Container>
-      <RowRank />
-      <RowRank />
-      <RowRank />
-      <RowRank />
-      <RowRank />
-      <RowRank />
+      {
+        players.map((player, index) => {
+          player.rank = index + 1;
+          return <RowRank key={index} {...{ player }} />
+        })
+      }
     </Container>
   )
 }

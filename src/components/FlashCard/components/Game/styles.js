@@ -2,8 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+  flex-flow: column;
   width: 65%;
+`;
+
+export const ContainerCards = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 export const Card = styled.div`
@@ -64,4 +70,15 @@ export const BackCard = styled.div`
   -moz-transform: rotateY( 180deg );
   -o-transform: rotateY( 180deg );
   transform: rotateY( 180deg );
+`
+
+export const Points = styled.div`
+  margin-left: .4em;
+  font-size: 25px;
+  text-align: center;
+  width: 8%;
+  color: #000;
+  background: #fff;
+  font-weight: bold;
+  box-shadow: 0px 14px 45px -2px rgba(0,0,0,0.75);
 `

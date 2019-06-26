@@ -39,7 +39,7 @@ height: inherit;
 transform: skew(-27deg);
 margin-left: -.6rem;
 z-index: 9;
-background-color: #27b49f;
+background-color: ${props => props.color};
 `
 
 export const Name = styled.div`
