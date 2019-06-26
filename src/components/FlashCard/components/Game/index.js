@@ -1,16 +1,15 @@
-import { Card, Container, FrontCard, BackCard, BoxCard, Points, ContainerCards } from "./styles";
-
-import IconCard from "../../../../assets/img/icon-card.png";
-import React, { useState, useEffect } from "react";
-import { connect } from 'react-redux';
 import * as card_actions from '../../../../actions/card';
 import * as player_actions from '../../../../actions/player';
+
+import { BackCard, BoxCard, Card, Container, ContainerCards, FrontCard, Points } from "./styles";
+import React, { useEffect, useState } from "react";
+
+import IconCard from "../../../../assets/img/icon-card.png";
+import Swal from 'sweetalert2'
 import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
 import getPlayer from "../../../../utils/getPlayer";
 import history from "../../../../utils/history";
-import Swal from 'sweetalert2'
-
-var controlInterval;
 
 const Game = ({ card, update_card, start_game, update_player }) => {
 
@@ -33,7 +32,6 @@ const Game = ({ card, update_card, start_game, update_player }) => {
   useEffect(() => {
     if (start && countChecked === (cards.length / 2)) {
       setStart(false);
-      clearInterval(controlInterval);
       let player = getPlayer();
       let better = player.points ? player.points > points : true;
       player.points = points;
@@ -45,6 +43,7 @@ const Game = ({ card, update_card, start_game, update_player }) => {
         title: better ? 'Parabéns, novo record' : 'Não foi dessa vez que você conseguiu atingir o record, tente novamente',
         text: points,
         type: better ? 'success' : 'error',
+        confirmButtonText: 'Reiniciar'
       }).then(() => {
         start_game()
       })
@@ -79,7 +78,6 @@ const Game = ({ card, update_card, start_game, update_player }) => {
     if (!start) {
       sessionStorage.setItem('inicio', new Date())
       setStart(true);
-      controlInterval = setInterval(cronometro, 10);
     }
 
     if (newCards[index].checked) {
@@ -95,22 +93,11 @@ const Game = ({ card, update_card, start_game, update_player }) => {
 
     if (indexCards.indexBack != null) {
       setIndexCards({ ...indexCards, indexCurrent: index })
-
+      let point = points + 1
+      setPoints(point);
     } else {
       setIndexCards({ ...indexCards, indexBack: index })
     }
-  }
-
-  const cronometro = () => {
-    let timeActual = new Date();
-    let acumularTime = timeActual - new Date(sessionStorage.getItem('inicio'));
-    let acumularTime2 = new Date();
-    acumularTime2.setTime(acumularTime);
-    let cc = Math.round(acumularTime2.getMilliseconds() / 10);
-    let ss = acumularTime2.getSeconds();
-    let mm = acumularTime2.getMinutes();
-    let time = parseFloat(parseFloat(((mm * 60) + ss)) + '.' + cc);
-    setPoints(time);
   }
 
   return (
@@ -125,7 +112,7 @@ const Game = ({ card, update_card, start_game, update_player }) => {
               </FrontCard>
 
               <BackCard>
-                <img src={IconCard} />
+                <img style={{width: '100%'}} src={IconCard} />
               </BackCard>
             </Card>
           </BoxCard>)

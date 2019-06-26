@@ -5,4 +5,8 @@ export const GlobalStyle = createGlobalStyle`
     background-color: rgba(0, 0, 0, 0.5);
     margin: 0
   }
+
+  ::-webkit-scrollbar { 
+    display: none; 
+  }
 `

@@ -10,6 +10,8 @@ export const Container = styled.div`
 export const ContainerCards = styled.div`
   display: flex;
   flex-wrap: wrap;
+  overflow: auto;
+  max-height: 40em;
 `;
 
 export const Card = styled.div`
@@ -25,13 +27,16 @@ export const Card = styled.div`
   -o-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-transform-origin: 50% 50%;
+  -webkit-transform: ${props => !props.open && 'rotateY(180deg)'};
+  -moz-transform: ${props => !props.open && 'rotateY(180deg)'};
+  -o-transform: ${props => !props.open && 'rotateY(180deg)'};
   transform: ${props => !props.open && 'rotateY(180deg)'};
   border: 1px solid #ccc;
 `;
 
 export const BoxCard = styled.div`
-  width: 200px;
-  height: 260px;
+  width: 9em;
+  height: 13em;
   position: relative;
   -webkit-perspective: 800px;
   -moz-perspective: 800px;
@@ -56,7 +61,7 @@ export const FrontCard = styled.div`
   background: #ffffff;
 
   span {
-    font-size: 8.5em
+    font-size: 8em
   }
 `
 
